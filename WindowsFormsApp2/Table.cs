@@ -1,20 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WindowsFormsApp2
 {
     internal class Table
     {
         private int _sideSize = 8;
-        private int[] _size = new int[64];
         private int _cellSize = 44;
         private int _startCoordinateX = 5;
         private int _startCoordinateY = 5;
         private Dictionary<int, int[]> _coordinates = new Dictionary<int, int[]>();
-        private Dictionary<int, Circle> _circles = new Dictionary<int, Circle>();
 
         public Table()
         {
@@ -41,11 +36,6 @@ namespace WindowsFormsApp2
         public void AddCoordinates(int index, int[] coordinates)
         {
             _coordinates.Add(index, coordinates);
-        }
-
-        public void AddCircle(Circle circle)
-        {
-            _circles.Add(circle.GetIndex(), circle);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp2
 {
@@ -12,15 +13,18 @@ namespace WindowsFormsApp2
         private List<Circle> _circles = new List<Circle>();
         private Random _random;
 
-        public void CreateStartCircles()
+        public void CreateStartCircles(CellsHolder cellsHolder)
         {
             _random = new Random();
 
             for (int i = 0; i < _startCirclesCount; i++)
             {
                 var circle = new Circle("blue", 1, false);
-                circle.Move(_random.Next(0, 100), _random.Next(0, 100));
-                _circles.Add(circle);
+
+                // куда засунуть
+
+                circle.Move(_random.Next(0, 100), _random.Next(0, 100)); // собсна засунуть
+                _circles.Add(circle); // записать что где лежит
             }
         }
 
@@ -29,6 +33,11 @@ namespace WindowsFormsApp2
             List<Circle> list = new List<Circle>();
             list = _circles;
             return list;
+        }
+
+        private bool ValidateCell()
+        {
+            // проверить на валидность ячейки
         }
     }
 }

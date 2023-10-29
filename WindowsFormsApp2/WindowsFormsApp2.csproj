@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Circle.cs" />
     <Compile Include="CirclesCreator.cs" />
+    <Compile Include="CellsHolder.cs" />
     <Compile Include="Table.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
