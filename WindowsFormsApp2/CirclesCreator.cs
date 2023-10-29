@@ -35,7 +35,7 @@ namespace WindowsFormsApp2
             return list;
         }
 
-        private bool ValidateCell()
+        private bool ValidateCell(int index)
         {
             // проверить на валидность ячейки
         }
