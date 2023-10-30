@@ -15,7 +15,6 @@ namespace WindowsFormsApp2
         private int _positionX;
         private int _positionY;
         private int _index;
-        private int _radius;
         private string _color;
         private Image _image;
         private int _level;
