@@ -9,7 +9,7 @@ namespace WindowsFormsApp2
         private Table _table;
         private CellsHolder _cellsHolder;
         private CirclesCreator _circlesCreator;
-        private Bitmap _bitmap = MyResources.BlueCircle;
+        private Bitmap _blueCircle = MyResources.BlueCircle;
         private Bitmap _tableBitmap = MyResources.Table;
 
         public Form1()
@@ -23,12 +23,13 @@ namespace WindowsFormsApp2
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             Graphics graphics = e.Graphics;
-            graphics.DrawImage(_bitmap, new Rectangle(0, 0, 100, 100));
             graphics.DrawImage(_tableBitmap, new Rectangle(12, 95, 355, 355));
 
             foreach (var item in _circlesCreator.GetCircles())
             {
-                graphics.DrawImage(_bitmap, new Rectangle(item.GetPosition()[0], item.GetPosition()[1], 30, 30));
+                graphics.DrawImage(_blueCircle, new Rectangle(item.GetPosition()[0], item.GetPosition()[1], 44, 44));
+                //item.GetLabel().BringToFront();
+                item.GetLabel().Parent = this;
             }
         }
 

@@ -7,8 +7,8 @@ namespace WindowsFormsApp2
     {
         private int _sideSize = 8;
         private int _cellSize = 44;
-        private int _startCoordinateX = 5;
-        private int _startCoordinateY = 5;
+        private int _startCoordinateX = 13;
+        private int _startCoordinateY = 96;
         private Dictionary<int, int[]> _coordinates = new Dictionary<int, int[]>();
 
         public Table()
@@ -36,6 +36,18 @@ namespace WindowsFormsApp2
         public void AddCoordinates(int index, int[] coordinates)
         {
             _coordinates.Add(index, coordinates);
+        }
+
+        public Dictionary<int, int[]> GetAllCoordinates()
+        {
+            Dictionary<int, int[]> coordinates = new Dictionary<int, int[]>();
+
+            foreach (var item in _coordinates)
+            {
+                coordinates.Add(item.Key, item.Value);
+            }
+
+            return coordinates;
         }
     }
 }

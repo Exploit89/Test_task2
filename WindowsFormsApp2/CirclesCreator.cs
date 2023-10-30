@@ -20,11 +20,18 @@ namespace WindowsFormsApp2
             for (int i = 0; i < _startCirclesCount; i++)
             {
                 var circle = new Circle("blue", 1, false);
+                int cellKey = GetFreeCell(cellsHolder);
+                int[] cellCoordinates = cellsHolder.GetFreeCoordinates(cellKey);
+                cellsHolder.RemoveFreeCell(cellKey);
+                circle.Move(cellCoordinates[0], cellCoordinates[1]);
+                circle.SetIndex(cellKey, cellCoordinates);
+                _circles.Add(circle);
+            }
 
-                // куда засунуть
-
-                circle.Move(_random.Next(0, 100), _random.Next(0, 100)); // собсна засунуть
-                _circles.Add(circle); // записать что где лежит
+            // проверка
+            foreach (var item in _circles)
+            {
+                Console.WriteLine(item.GetIndex());
             }
         }
 
@@ -35,9 +42,11 @@ namespace WindowsFormsApp2
             return list;
         }
 
-        private bool ValidateCell(int index)
+        private int GetFreeCell(CellsHolder cellsHolder)
         {
-            // проверить на валидность ячейки
+            int cellIndex = _random.Next(0, cellsHolder.GetFreeCells().Count);
+            int freeCellIndex = cellsHolder.GetFreeCells()[cellIndex];
+            return freeCellIndex;
         }
     }
 }
