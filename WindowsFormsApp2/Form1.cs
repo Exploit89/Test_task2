@@ -9,6 +9,7 @@ namespace WindowsFormsApp2
         private Table _table;
         private CellsHolder _cellsHolder;
         private CirclesCreator _circlesCreator;
+        private QuestCreator _questCreator;
         private Bitmap _blueCircle = MyResources.BlueCircle;
         private Bitmap _tableBitmap = MyResources.Table;
 
@@ -28,8 +29,13 @@ namespace WindowsFormsApp2
             foreach (var item in _circlesCreator.GetCircles())
             {
                 graphics.DrawImage(_blueCircle, new Rectangle(item.GetPosition()[0], item.GetPosition()[1], 44, 44));
-                //item.GetLabel().BringToFront();
                 item.GetLabel().Parent = this;
+            }
+
+            foreach (var item in _questCreator.GetCircles())
+            {
+                graphics.DrawImage(item.GetImage(), new Rectangle(item.GetPosition()[0], item.GetPosition()[1], 44, 44));
+                //item.GetLabel().Parent = this;
             }
         }
 
@@ -38,6 +44,7 @@ namespace WindowsFormsApp2
             _table = new Table();
             _circlesCreator = new CirclesCreator();
             _cellsHolder = new CellsHolder(_table);
+            _questCreator = new QuestCreator();
             _circlesCreator.CreateStartCircles(_cellsHolder);
         }
 

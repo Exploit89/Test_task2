@@ -9,3 +9,14 @@ C:\MyDisk\GitHub\Test_task2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.G
 C:\MyDisk\GitHub\Test_task2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.CoreCompileInputs.cache
 C:\MyDisk\GitHub\Test_task2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.exe
 C:\MyDisk\GitHub\Test_task2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.pdb
+C:\GitHub\Test_task2\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe.config
+C:\GitHub\Test_task2\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe
+C:\GitHub\Test_task2\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.pdb
+C:\GitHub\Test_task2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.AssemblyReference.cache
+C:\GitHub\Test_task2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.Form1.resources
+C:\GitHub\Test_task2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.MyResources.resources
+C:\GitHub\Test_task2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.Properties.Resources.resources
+C:\GitHub\Test_task2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.GenerateResource.cache
+C:\GitHub\Test_task2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.CoreCompileInputs.cache
+C:\GitHub\Test_task2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.exe
+C:\GitHub\Test_task2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.pdb
