@@ -52,6 +52,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
             ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -61,7 +62,6 @@
 
         private System.Windows.Forms.BindingSource tableBindingSource;
         private System.Windows.Forms.Timer timer1;
-
     }
 }
 

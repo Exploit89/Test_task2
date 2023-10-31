@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp2
@@ -18,9 +13,9 @@ namespace WindowsFormsApp2
             CreateLabel();
         }
 
-        public void AddPoints(int points)
+        public void AddPoints(Circle circle)
         {
-            _points+= points;
+            _points += GetPoints(circle);
         }
 
         public void ClearPoints()
@@ -36,7 +31,7 @@ namespace WindowsFormsApp2
         private void CreateLabel()
         {
             _label = new Label();
-            _label.Name = "quest";
+            _label.Name = "points";
             _label.Size = new Size(100, 44);
             _label.Width = 120;
             _label.Height = 45;
@@ -47,6 +42,23 @@ namespace WindowsFormsApp2
             _label.Font = new Font("Tobota", 14, FontStyle.Bold);
             _label.ForeColor = Color.Black;
             _label.Text = "Points:" + " " + _points.ToString();
+        }
+
+        private int GetPoints(Circle circle)
+        {
+            switch (circle.GetLevel())
+            {
+                case 1:
+                    return 1;
+                case 2:
+                    return 3;
+                case 3:
+                    return 9;
+                case 4:
+                    return 27;
+                default:
+                    return 0;
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ namespace WindowsFormsApp2
         private CellsHolder _cellsHolder;
         private CirclesCreator _circlesCreator;
         private QuestCreator _questCreator;
+        private QuestClicker _questClicker;
         private Bitmap _blueCircle = MyResources.BlueCircle;
         private Bitmap _tableBitmap = MyResources.Table;
         private Points _points;
@@ -49,6 +50,7 @@ namespace WindowsFormsApp2
             _circlesCreator = new CirclesCreator();
             _cellsHolder = new CellsHolder(_table);
             _questCreator = new QuestCreator();
+            _questClicker = new QuestClicker(_questCreator);
             _circlesCreator.CreateStartCircles(_cellsHolder);
             _points = new Points();
         }
@@ -56,6 +58,14 @@ namespace WindowsFormsApp2
         private void timer1_Tick(object sender, EventArgs e)
         {
             Refresh();
+        }
+
+        // для теста
+        private void Form1_MouseClick(object sender, MouseEventArgs e)
+        {
+            int x = e.X;
+            int y = e.Y;
+            Console.WriteLine(x + " " + y);
         }
     }
 }

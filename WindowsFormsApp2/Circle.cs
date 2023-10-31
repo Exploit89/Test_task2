@@ -83,6 +83,11 @@ namespace WindowsFormsApp2
             return _image;
         }
 
+        public int GetLevel()
+        {
+            return _level;
+        }
+
         private void SetLabel(int[] coordinates)
         {
             _label = new System.Windows.Forms.Label();
