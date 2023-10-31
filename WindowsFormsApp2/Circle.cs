@@ -62,7 +62,7 @@ namespace WindowsFormsApp2
         public void SetIndex(int index, int[] coordinates)
         {
             _index = index;
-            SetLabel(coordinates); // переделать на лвл
+            SetLabel(coordinates);
         }
 
         public int[] GetPosition()
@@ -96,9 +96,10 @@ namespace WindowsFormsApp2
             _label.Location = new Point(coordinates[0], coordinates[1]);
             _label.Font = new Font("Tobota", 16, FontStyle.Bold);
             _label.ForeColor = Color.Yellow;
+            _label.Text = _level.ToString();
 
             // для проверки
-            _label.Text = _index.ToString();
+            //_label.Text = _index.ToString();
         }
     }
 }

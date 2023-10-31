@@ -12,6 +12,7 @@ namespace WindowsFormsApp2
         private QuestCreator _questCreator;
         private Bitmap _blueCircle = MyResources.BlueCircle;
         private Bitmap _tableBitmap = MyResources.Table;
+        private Points _points;
 
         public Form1()
         {
@@ -35,8 +36,11 @@ namespace WindowsFormsApp2
             foreach (var item in _questCreator.GetCircles())
             {
                 graphics.DrawImage(item.GetImage(), new Rectangle(item.GetPosition()[0], item.GetPosition()[1], 44, 44));
-                //item.GetLabel().Parent = this;
+                item.GetLabel().Parent = this;
             }
+
+            _questCreator.GetLabel().Parent = this;
+            _points.GetLabel().Parent = this;
         }
 
         private void StartGame()
@@ -46,6 +50,7 @@ namespace WindowsFormsApp2
             _cellsHolder = new CellsHolder(_table);
             _questCreator = new QuestCreator();
             _circlesCreator.CreateStartCircles(_cellsHolder);
+            _points = new Points();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
