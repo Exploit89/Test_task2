@@ -7,6 +7,7 @@ namespace WindowsFormsApp2
     {
         private Table _table;
         private List<int> _freecells;
+        private List<Circle> _circles = new List<Circle>();
 
         public CellsHolder(Table table)
         {
@@ -34,6 +35,18 @@ namespace WindowsFormsApp2
         public int[] GetFreeCoordinates(int key)
         {
             return _table.GetAllCoordinates().Values.ElementAt(key);
+        }
+
+        public void AddCircle(Circle circle)
+        {
+            _circles.Add(circle);
+        }
+
+        public List<Circle> GetCircles()
+        {
+            List<Circle> list = new List<Circle>();
+            list = _circles;
+            return list;
         }
 
         private void FillFreeCells()

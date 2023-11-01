@@ -49,6 +49,7 @@
     <Compile Include="Circle.cs" />
     <Compile Include="CirclesCreator.cs" />
     <Compile Include="CellsHolder.cs" />
+    <Compile Include="TableClicker.cs" />
     <Compile Include="QuestClicker.cs" />
     <Compile Include="Points.cs" />
     <Compile Include="QuestCreator.cs" />

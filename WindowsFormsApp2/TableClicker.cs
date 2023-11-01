@@ -5,21 +5,21 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp2
 {
-    internal class QuestClicker
+    internal class TableClicker
     {
         private List<Label> _labels;
-        private QuestCreator _questCreator;
+        private CellsHolder _cellsHolder;
         private Dictionary<int, Circle> _circles;
         private List<int> _distances;
         private Form _form;
         private int _formXoffset = 30;
         private int _formYoffset = 50;
 
-        public QuestClicker(QuestCreator questCreator, Form form)
+        public TableClicker(CellsHolder cellsHolder, Form form)
         {
             _form = form;
             _labels = new List<Label>();
-            _questCreator = questCreator;
+            _cellsHolder = cellsHolder;
             _circles = new Dictionary<int, Circle>();
             AddLabels();
 
@@ -49,7 +49,7 @@ namespace WindowsFormsApp2
             int index;
             _distances = new List<int>();
 
-            foreach (var item in _questCreator.GetCircles())
+            foreach (var item in _cellsHolder.GetCircles())
             {
                 int distance = SearchNearestValue(click, item.GetPoint());
                 Console.WriteLine("distance is " + distance);
@@ -104,7 +104,7 @@ namespace WindowsFormsApp2
 
         private void AddLabels()
         {
-            foreach (var item in _questCreator.GetCircles())
+            foreach (var item in _cellsHolder.GetCircles())
             {
                 _labels.Add(item.GetLabel());
             }

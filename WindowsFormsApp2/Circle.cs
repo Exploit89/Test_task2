@@ -73,6 +73,14 @@ namespace WindowsFormsApp2
             return result;
         }
 
+        public Point GetPoint()
+        {
+            Point point = new Point();
+            point.X = _positionX;
+            point.Y = _positionY;
+            return point;
+        }
+
         public System.Windows.Forms.Label GetLabel()
         {
             return _label;
@@ -81,6 +89,11 @@ namespace WindowsFormsApp2
         public Image GetImage()
         {
             return _image;
+        }
+
+        public string GetColor()
+        {
+            return _color;
         }
 
         public int GetLevel()

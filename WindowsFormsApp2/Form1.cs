@@ -11,6 +11,7 @@ namespace WindowsFormsApp2
         private CirclesCreator _circlesCreator;
         private QuestCreator _questCreator;
         private QuestClicker _questClicker;
+        private TableClicker _tableClicker;
         private Bitmap _blueCircle = MyResources.BlueCircle;
         private Bitmap _tableBitmap = MyResources.Table;
         private Points _points;
@@ -50,8 +51,9 @@ namespace WindowsFormsApp2
             _circlesCreator = new CirclesCreator();
             _cellsHolder = new CellsHolder(_table);
             _questCreator = new QuestCreator();
-            _questClicker = new QuestClicker(_questCreator);
+            _questClicker = new QuestClicker(_questCreator, this);
             _circlesCreator.CreateStartCircles(_cellsHolder);
+            _tableClicker = new TableClicker(_cellsHolder, this);
             _points = new Points();
         }
 

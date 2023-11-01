@@ -26,6 +26,7 @@ namespace WindowsFormsApp2
                 circle.Move(cellCoordinates[0], cellCoordinates[1]);
                 circle.SetIndex(cellKey, cellCoordinates);
                 _circles.Add(circle);
+                cellsHolder.AddCircle(circle);
             }
 
             // проверка
