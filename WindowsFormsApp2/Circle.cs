@@ -35,8 +35,11 @@ namespace WindowsFormsApp2
                 case "green":
                     _image = MyResources.GreenCircle;
                     break;
+                case "transparent":
+                    _image = MyResources.TransparentCircle;
+                    break;
                 default:
-                    _image = MyResources.BlueCircle;
+                    _image = MyResources.TransparentCircle;
                     break;
             }
         }
@@ -94,6 +97,11 @@ namespace WindowsFormsApp2
             return _level;
         }
 
+        public void SetEmptyCircle()
+        {
+            _label.Text = string.Empty;
+        }
+
         private void SetLabel(int[] coordinates)
         {
             _label = new Label();
@@ -110,7 +118,7 @@ namespace WindowsFormsApp2
             _label.Text = _level.ToString();
 
             // для проверки
-            _label.Text = _index.ToString();
+            //_label.Text = _index.ToString();
         }
     }
 }

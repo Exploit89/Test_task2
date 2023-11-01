@@ -52,9 +52,14 @@ namespace WindowsFormsApp2
             return list;
         }
 
-        public void RemoveCircle(int index)
+        //public void RemoveCircle(int index)
+        //{
+        //    _circles.RemoveAt(index);
+        //}
+
+        public void RemoveCircle(Circle circle)
         {
-            _circles.RemoveAt(index);
+            _circles.Remove(circle);
         }
 
         public Label GetLabel()

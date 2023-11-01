@@ -6,19 +6,15 @@ namespace WindowsFormsApp2
 {
     internal class TableClicker
     {
-        private Dictionary<Label, Circle> _labelsCircles = new Dictionary<Label, Circle>();
-
+        private Dictionary<Label, Circle> _labelsCircles;
         private List<Label> _labels;
         private CellsHolder _cellsHolder;
-        private Dictionary<int, Circle> _circles;
-        private Form _form;
 
-        public TableClicker(CellsHolder cellsHolder, Form form)
+        public TableClicker(CellsHolder cellsHolder)
         {
-            _form = form;
+            _labelsCircles = new Dictionary<Label, Circle>();
             _labels = new List<Label>();
             _cellsHolder = cellsHolder;
-            _circles = new Dictionary<int, Circle>();
             AddLabels();
 
             foreach (Label label in _labels)
@@ -30,19 +26,19 @@ namespace WindowsFormsApp2
         private void MouseClick(object sender, MouseEventArgs e)
         {
             Label label = (Label)sender;
-            Circle circle2 = null;
+            Circle circle = null;
 
             foreach (var item in _labelsCircles)
             {
                 if (item.Key == label)
                 {
-                    circle2 = item.Value;
+                    circle = item.Value;
                 }
             }
 
-            Console.WriteLine($"Index: {circle2.GetIndex()}");
-            Console.WriteLine($"level: {circle2.GetLevel()}");
-            Console.WriteLine($"color: {circle2.GetColor()}");
+            Console.WriteLine($"Index: {circle.GetIndex()}");
+            Console.WriteLine($"level: {circle.GetLevel()}");
+            Console.WriteLine($"color: {circle.GetColor()}");
         }
 
         private void AddLabels()
