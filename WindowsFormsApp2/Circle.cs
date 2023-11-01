@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
-using WindowsFormsApp2.Properties;
 
 namespace WindowsFormsApp2
 {
@@ -19,7 +12,7 @@ namespace WindowsFormsApp2
         private Image _image;
         private int _level;
         private bool _generation;
-        private System.Windows.Forms.Label _label;
+        private Label _label;
 
         public Circle(string color, int level, bool generation)
         {
@@ -81,7 +74,7 @@ namespace WindowsFormsApp2
             return point;
         }
 
-        public System.Windows.Forms.Label GetLabel()
+        public Label GetLabel()
         {
             return _label;
         }
@@ -103,7 +96,7 @@ namespace WindowsFormsApp2
 
         private void SetLabel(int[] coordinates)
         {
-            _label = new System.Windows.Forms.Label();
+            _label = new Label();
             _label.Name = "level";
             _label.Size = new Size(44, 44);
             _label.Width = 45;
@@ -117,7 +110,7 @@ namespace WindowsFormsApp2
             _label.Text = _level.ToString();
 
             // для проверки
-            //_label.Text = _index.ToString();
+            _label.Text = _index.ToString();
         }
     }
 }
