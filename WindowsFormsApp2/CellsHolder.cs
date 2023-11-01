@@ -49,6 +49,16 @@ namespace WindowsFormsApp2
             return list;
         }
 
+        public void RemoveCircle(Circle circle)
+        {
+            foreach (var item in _circles)
+            {
+                if (item == circle)
+                    item.SetEmptyCircle();
+            }
+            _circles.Remove(circle);
+        }
+
         private void FillFreeCells()
         {
             foreach (var item in _table.GetAllCoordinates())

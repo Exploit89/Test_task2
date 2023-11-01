@@ -59,6 +59,7 @@ namespace WindowsFormsApp2
 
         public void RemoveCircle(Circle circle)
         {
+            circle.SetEmptyCircle();
             _circles.Remove(circle);
         }
 

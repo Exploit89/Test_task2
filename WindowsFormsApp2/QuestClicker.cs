@@ -9,12 +9,16 @@ namespace WindowsFormsApp2
         private Dictionary<Label, Circle> _labelsCircles;
         private List<Label> _labels;
         private QuestCreator _questCreator;
+        private CellsHolder _cellsHolder;
 
-        public QuestClicker(QuestCreator questCreator)
+        public event Action<Circle> QuestCompleted;
+
+        public QuestClicker(QuestCreator questCreator, CellsHolder cellsHolder)
         {
             _labelsCircles = new Dictionary<Label, Circle>();
             _labels = new List<Label>();
             _questCreator = questCreator;
+            _cellsHolder = cellsHolder;
             AddLabels();
 
             foreach (Label label in _labels)
@@ -36,8 +40,7 @@ namespace WindowsFormsApp2
                 }
             }
 
-            //////////////////////////////////////////////////////
-            _questCreator.RemoveCircle(circle);
+            TryCompleteQuest(circle);
 
             Console.WriteLine($"Index: {circle.GetIndex()}");
             Console.WriteLine($"level: {circle.GetLevel()}");
@@ -51,6 +54,36 @@ namespace WindowsFormsApp2
                 _labels.Add(item.GetLabel());
                 _labelsCircles.Add(item.GetLabel(), item);
             }
+        }
+
+        private void TryCompleteQuest(Circle circle)
+        {
+            if (circle != null)
+            {
+                ValidateCircle(circle);
+                // надо как-то удалить эл-т коллекции cellsHolder + очки после удаления продолжают прибавляться
+                _cellsHolder.RemoveCircle(circle);
+            }
+        }
+
+        private bool ValidateCircle(Circle circle)
+        {
+            foreach (var item in _cellsHolder.GetCircles())
+            {
+                string questColor = item.GetColor();
+                int questLevel = item.GetLevel();
+                string color = circle.GetColor();
+                int level = circle.GetLevel();
+
+                if (questColor == color && questLevel == level)
+                {
+                    QuestCompleted?.Invoke(circle);
+                    _questCreator.RemoveCircle(circle);
+                    //_cellsHolder.RemoveCircle(item);
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

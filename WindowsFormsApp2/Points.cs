@@ -1,21 +1,26 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp2
 {
     internal class Points
     {
+        private QuestClicker _questClicker;
         private Label _label;
         private int _points = 0;
 
-        public Points()
+        public Points(QuestClicker questClicker)
         {
             CreateLabel();
+            _questClicker = questClicker;
+            _questClicker.QuestCompleted += AddPoints;
         }
 
         public void AddPoints(Circle circle)
         {
             _points += GetPoints(circle);
+            _label.Text = _points.ToString();
         }
 
         public void ClearPoints()

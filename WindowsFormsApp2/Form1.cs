@@ -38,10 +38,10 @@ namespace WindowsFormsApp2
             _circlesCreator = new CirclesCreator();
             _cellsHolder = new CellsHolder(_table);
             _questCreator = new QuestCreator();
-            _questClicker = new QuestClicker(_questCreator);
+            _questClicker = new QuestClicker(_questCreator, _cellsHolder);
             _circlesCreator.CreateStartCircles(_cellsHolder);
             _tableClicker = new TableClicker(_cellsHolder);
-            _points = new Points();
+            _points = new Points(_questClicker);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
