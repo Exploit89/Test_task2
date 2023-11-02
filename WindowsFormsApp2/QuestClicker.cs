@@ -62,7 +62,6 @@ namespace WindowsFormsApp2
             {
                 ValidateCircle(circle);
                 // надо как-то удалить эл-т коллекции cellsHolder + очки после удаления продолжают прибавляться
-                _cellsHolder.RemoveCircle(circle);
             }
         }
 
@@ -78,8 +77,8 @@ namespace WindowsFormsApp2
                 if (questColor == color && questLevel == level)
                 {
                     QuestCompleted?.Invoke(circle);
-                    _questCreator.RemoveCircle(circle);
-                    //_cellsHolder.RemoveCircle(item);
+                    _questCreator.RefreshQuest(circle);
+                    _cellsHolder.RemoveCircle(item);
                     return true;
                 }
             }

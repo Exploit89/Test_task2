@@ -102,6 +102,14 @@ namespace WindowsFormsApp2
             _label.Text = string.Empty;
         }
 
+        public void SetNewParameters(string color, int level)
+        {
+            _color = color;
+            _level = level;
+            _label.Text = level.ToString();
+            ChooseColor(color);
+        }
+
         private void SetLabel(int[] coordinates)
         {
             _label = new Label();

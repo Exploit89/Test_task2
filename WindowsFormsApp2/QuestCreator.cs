@@ -52,15 +52,11 @@ namespace WindowsFormsApp2
             return list;
         }
 
-        //public void RemoveCircle(int index)
-        //{
-        //    _circles.RemoveAt(index);
-        //}
-
-        public void RemoveCircle(Circle circle)
+        public void RefreshQuest(Circle circle)
         {
             circle.SetEmptyCircle();
-            _circles.Remove(circle);
+            //_circles.Remove(circle);
+            AddNewQuest(circle);
         }
 
         public Label GetLabel()
@@ -82,6 +78,19 @@ namespace WindowsFormsApp2
             _label.Font = new Font("Tobota", 14, FontStyle.Bold);
             _label.ForeColor = Color.Black;
             _label.Text = "Quest:";
+        }
+
+        private void AddNewQuest(Circle circle)
+        {
+            _random = new Random();
+            var colorIndex = _random.Next(0, 3);
+            var circleLevel = _random.Next(1, 5);
+            var color = typeof(Colors).GetEnumName(colorIndex);
+            circle.SetNewParameters(color, circleLevel);
+            Console.WriteLine("New quest:");
+            Console.WriteLine($"Index: {circle.GetIndex()}");
+            Console.WriteLine($"level: {circle.GetLevel()}");
+            Console.WriteLine($"color: {circle.GetColor()}\n");
         }
     }
 }

@@ -51,13 +51,7 @@ namespace WindowsFormsApp2
 
         private void DrawCircles(Graphics graphics)
         {
-            foreach (var item in _circlesCreator.GetCircles())
-            {
-                graphics.DrawImage(item.GetImage(), new Rectangle(item.GetPosition()[0], item.GetPosition()[1], 44, 44));
-                item.GetLabel().Parent = this;
-            }
-
-            foreach (var item in _circlesCreator.GetEmptyCircles())
+            foreach (var item in _cellsHolder.GetCircles())
             {
                 graphics.DrawImage(item.GetImage(), new Rectangle(item.GetPosition()[0], item.GetPosition()[1], 44, 44));
                 item.GetLabel().Parent = this;
