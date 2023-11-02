@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp2
@@ -11,6 +12,8 @@ namespace WindowsFormsApp2
         private List<Label> _labels;
         private Circle _currentCircle;
         private Circle _takerCircle;
+        private Image _currentImage;
+        private Point _currentPoint;
 
         public CircleMover(CellsHolder cellsholder)
         {
@@ -27,6 +30,26 @@ namespace WindowsFormsApp2
             }
         }
 
+        public Circle GetCurrentCircle()
+        {
+            return _currentCircle;
+        }
+
+        public Image GetCurrentImage()
+        {
+            return _currentImage;
+        }
+
+        public Point GetCurrentPoint()
+        {
+            return _currentPoint;
+        }
+
+        public Circle GetTakerCircle()
+        {
+            return _takerCircle;
+        }
+
         private void MouseDown(object sender, MouseEventArgs e)
         {
             Console.WriteLine("mouse down");
@@ -41,6 +64,8 @@ namespace WindowsFormsApp2
                     {
                         takenCircle = item.Value;
                         _currentCircle = takenCircle;
+                        _currentImage = takenCircle.GetImage();
+                        _currentPoint = new Point(takenCircle.GetPosition()[0], takenCircle.GetPosition()[1]);
                     }
                 }
                 Console.WriteLine($"Взяли:");

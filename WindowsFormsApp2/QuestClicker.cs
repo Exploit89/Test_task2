@@ -78,6 +78,7 @@ namespace WindowsFormsApp2
                 {
                     QuestCompleted?.Invoke(circle);
                     AddCompletedQuest?.Invoke();
+                    Console.WriteLine("quest action about completing");
                     _questCreator.RefreshQuest(circle);
                     _cellsHolder.RemoveCircle(item);
                     return true;

@@ -26,6 +26,7 @@ namespace WindowsFormsApp2
         public void ClearPoints()
         {
             _points = 0;
+            _label.Text = "Points:" + " " + _points.ToString();
         }
 
         public Label GetLabel()

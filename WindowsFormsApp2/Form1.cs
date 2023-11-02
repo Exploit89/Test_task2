@@ -17,7 +17,14 @@ namespace WindowsFormsApp2
         private CircleMover _circleMover;
         private CircleGenerator _circleGenerator;
         private int _completedQuestCount = 0;
-        private int _maxQuestCount = 10;
+        private int _maxQuestCount = 2;
+        private int _currentX = 0;
+        private int _currentY = 0;
+        private int _takerX = 0;
+        private int _takerY = 0;
+        private int _directionX = 0;
+        private int _directionY = 0;
+        private Circle _currentCircle;
 
         public Form1()
         {
@@ -25,6 +32,8 @@ namespace WindowsFormsApp2
             UpdateStyles();
             InitializeComponent();
             totalPoints.Hide();
+            okButton.Hide();
+            gameOver.Hide();
             StartGame();
         }
 
@@ -35,6 +44,28 @@ namespace WindowsFormsApp2
             DrawCircles(graphics);
             _questCreator.GetLabel().Parent = this;
             _points.GetLabel().Parent = this;
+
+            if (_circleMover.GetCurrentCircle() != null)
+            {
+                _currentCircle = _circleMover.GetCurrentCircle();
+            }
+
+            if (_currentCircle != null)
+            {
+                _currentX = _circleMover.GetCurrentCircle().GetPosition()[0];
+                _currentY = _circleMover.GetCurrentCircle().GetPosition()[1];
+
+                if (_circleMover.GetTakerCircle() != null)
+                {
+                    _takerX = _circleMover.GetTakerCircle().GetPosition()[0];
+                    _takerY = _circleMover.GetTakerCircle().GetPosition()[1];
+                }
+                _currentX += _directionX;
+                _currentY += _directionY;
+
+                graphics.DrawImage(_circleMover.GetCurrentImage(),
+                    new Rectangle(_currentX, _currentY, 44, 44));
+            }
         }
 
         private void StartGame()
@@ -50,16 +81,15 @@ namespace WindowsFormsApp2
             _points = new Points(_questClicker);
             _circleMover = new CircleMover(_cellsHolder);
             _circleGenerator = new CircleGenerator(_cellsHolder);
-            _questClicker.AddCompletedQuest += AddCompletedQuest();
+            _questClicker.QuestCompleted += AddCompletedQuest;
         }
 
-        private Action AddCompletedQuest()
+        private void AddCompletedQuest(Circle circle)
         {
             _completedQuestCount++;
             Console.WriteLine("completed quests =" + _completedQuestCount);
             if (_completedQuestCount == _maxQuestCount)
                 EndGame();
-            return () => { };
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -84,18 +114,41 @@ namespace WindowsFormsApp2
 
         private void StartButtonClick(object sender, EventArgs e)
         {
-            if (_completedQuestCount == 10)
-                StartGame();
             menuPanel.Hide();
             totalPoints.Hide();
+            _completedQuestCount = 0;
+        }
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            okButton.Hide();
+            startButton.Show();
+            totalPoints.Hide();
+            gameOver.Hide();
+            Application.Restart();
         }
 
         private void EndGame()
         {
             menuPanel.Show();
-            totalPoints.Text = _points.GetTotalPoints().ToString();
+            gameOver.Show();
+            startButton.Hide();
+            okButton.Show();
+            totalPoints.Text = "Total points: " + _points.GetTotalPoints().ToString();
             totalPoints.Show();
-            _completedQuestCount = 0;
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (_directionX <= _takerX && _directionY <= _takerY)
+            {
+                _directionX += _takerX / 20;
+                _directionY += _takerY / 20;
+            }
+            else
+            {
+                _currentCircle = null;
+            }
         }
     }
 }

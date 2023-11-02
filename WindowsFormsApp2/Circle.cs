@@ -70,14 +70,6 @@ namespace WindowsFormsApp2
             return result;
         }
 
-        public Point GetPoint()
-        {
-            Point point = new Point();
-            point.X = _positionX;
-            point.Y = _positionY;
-            return point;
-        }
-
         public Label GetLabel()
         {
             return _label;
@@ -112,6 +104,15 @@ namespace WindowsFormsApp2
             _level = level;
             _label.Text = level.ToString();
             ChooseColor(color);
+        }
+
+        public void SetNewParameters(string color, int level, bool generation)
+        {
+            _color = color;
+            _level = level;
+            _label.Text = level.ToString();
+            ChooseColor(color);
+            _generation = generation;
         }
 
         private void SetLabel(int[] coordinates)

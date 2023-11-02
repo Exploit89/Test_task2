@@ -36,6 +36,62 @@ namespace WindowsFormsApp2
             }
         }
 
+        public List<Circle> GetCircles()
+        {
+            return _circles;
+        }
+
+        public List<Circle> GetEmptyCircles()
+        {
+            return _emptyCircles;
+        }
+
+        public void SetAllFree(CellsHolder cellsHolder)
+        {
+            foreach (var item in _circles)
+            {
+                item.SetNewParameters("transparent", 0);
+                item.SetEmptyCircle();
+            }
+
+            foreach (var item in _emptyCircles)
+            {
+                item.SetNewParameters("transparent", 0);
+                item.SetEmptyCircle();
+            }
+
+            _random = new Random();
+
+            for (int i = 0; i < _startCirclesCount; i++)
+            {
+                _circles[i].SetNewParameters("blue", 1, false);
+                int cellKey = GetFreeCell(cellsHolder);
+                int[] cellCoordinates = cellsHolder.GetFreeCoordinates(cellKey);
+                cellsHolder.RemoveFreeCell(cellKey);
+                _circles[i].Move(cellCoordinates[0], cellCoordinates[1]);
+                _circles[i].SetIndex(cellKey, cellCoordinates);
+                _circles[i].GetLabel().AllowDrop = true;
+                _circles.Add(_circles[i]);
+                cellsHolder.AddCircle(_circles[i]);
+            }
+
+            int emptyCirclescCount = _cellsCount - _startCirclesCount;
+
+            for (int i = 0; i < emptyCirclescCount; i++)
+            {
+                _circles[i].SetNewParameters("transparent", 0, false);
+                int cellKey = GetFreeCell(cellsHolder);
+                int[] cellCoordinates = cellsHolder.GetFreeCoordinates(cellKey);
+                cellsHolder.RemoveFreeCell(cellKey);
+                _circles[i].Move(cellCoordinates[0], cellCoordinates[1]);
+                _circles[i].SetIndex(cellKey, cellCoordinates);
+                _circles[i].GetLabel().AllowDrop = true;
+                _emptyCircles.Add(_circles[i]);
+                cellsHolder.AddCircle(_circles[i]);
+                _circles[i].SetEmptyCircle();
+            }
+        }
+
         private int GetFreeCell(CellsHolder cellsHolder)
         {
             int cellIndex = _random.Next(0, cellsHolder.GetFreeCells().Count);

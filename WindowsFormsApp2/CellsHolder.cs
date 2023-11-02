@@ -76,6 +76,11 @@ namespace WindowsFormsApp2
             circles.Clear();
         }
 
+        public void ClearFreeCells()
+        {
+            _freecells.Clear();
+        }
+
         private void FillFreeCells()
         {
             foreach (var item in _table.GetAllCoordinates())

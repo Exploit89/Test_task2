@@ -33,9 +33,12 @@ namespace WindowsFormsApp2
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuPanel = new System.Windows.Forms.Panel();
+            this.gameOver = new System.Windows.Forms.Label();
+            this.okButton = new System.Windows.Forms.Button();
+            this.totalPoints = new System.Windows.Forms.Label();
             this.startButton = new System.Windows.Forms.Button();
             this.tableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.totalPoints = new System.Windows.Forms.Label();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.menuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -48,12 +51,44 @@ namespace WindowsFormsApp2
             // 
             // menuPanel
             // 
+            this.menuPanel.Controls.Add(this.gameOver);
+            this.menuPanel.Controls.Add(this.okButton);
             this.menuPanel.Controls.Add(this.totalPoints);
             this.menuPanel.Controls.Add(this.startButton);
             this.menuPanel.Location = new System.Drawing.Point(12, 12);
             this.menuPanel.Name = "menuPanel";
             this.menuPanel.Size = new System.Drawing.Size(360, 437);
             this.menuPanel.TabIndex = 0;
+            // 
+            // gameOver
+            // 
+            this.gameOver.AutoSize = true;
+            this.gameOver.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.gameOver.Location = new System.Drawing.Point(123, 132);
+            this.gameOver.Name = "gameOver";
+            this.gameOver.Size = new System.Drawing.Size(116, 24);
+            this.gameOver.TabIndex = 3;
+            this.gameOver.Text = "Game Over";
+            // 
+            // okButton
+            // 
+            this.okButton.Location = new System.Drawing.Point(82, 248);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(198, 51);
+            this.okButton.TabIndex = 2;
+            this.okButton.Text = "OK";
+            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            // 
+            // totalPoints
+            // 
+            this.totalPoints.AutoSize = true;
+            this.totalPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
+            this.totalPoints.Location = new System.Drawing.Point(53, 65);
+            this.totalPoints.Name = "totalPoints";
+            this.totalPoints.Size = new System.Drawing.Size(130, 24);
+            this.totalPoints.TabIndex = 1;
+            this.totalPoints.Text = "Total points: ";
             // 
             // startButton
             // 
@@ -69,15 +104,10 @@ namespace WindowsFormsApp2
             // 
             this.tableBindingSource.DataSource = typeof(WindowsFormsApp2.Table);
             // 
-            // totalPoints
+            // timer2
             // 
-            this.totalPoints.AutoSize = true;
-            this.totalPoints.Location = new System.Drawing.Point(53, 65);
-            this.totalPoints.Name = "TotalPoints";
-            this.totalPoints.Size = new System.Drawing.Size(35, 13);
-            this.totalPoints.TabIndex = 1;
-            this.totalPoints.Text = "Total points: ";
-            this.totalPoints.Font = new Font("Tobota", 14, FontStyle.Bold);
+            this.timer2.Enabled = true;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Form1
             // 
@@ -102,6 +132,9 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.Panel menuPanel;
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.Label totalPoints;
+        private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Label gameOver;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
