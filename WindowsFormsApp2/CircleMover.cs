@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,6 @@ namespace WindowsFormsApp2
             foreach (Label label in _labels)
             {
                 label.MouseDown += new MouseEventHandler(MouseDown);
-                label.MouseUp += new MouseEventHandler(MouseUp);
                 label.DragEnter += new DragEventHandler(DragEnter);
                 label.DragDrop += new DragEventHandler(DragDrop);
             }
@@ -46,22 +46,13 @@ namespace WindowsFormsApp2
             Console.WriteLine($"Index: {circle.GetIndex()}");
             Console.WriteLine($"level: {circle.GetLevel()}");
             Console.WriteLine($"color: {circle.GetColor()}");
-            //label.DoDragDrop(label, DragDropEffects.Copy | DragDropEffects.Move);
 
-            //Circle data = null;
+            object data = circle.GetLevel() + circle.GetColor();
 
-            //foreach (var item in _labelsCircles)
-            //{
-            //    if (item.Key == label)
-            //    {
-            //        data = item.Value;
-            //    }
-            //}
-            //label.DoDragDrop(label.Text, DragDropEffects.Copy | DragDropEffects.Move);
-            label.DoDragDrop(label.Text, DragDropEffects.Move);
+            label.DoDragDrop(data, DragDropEffects.Move);
 
-            SetTakenEmpty(label);
-            label.Text = string.Empty;
+            //SetTakenEmpty(label);
+            //circle.SetEmptyCircle();
         }
 
         private void DragEnter(object sender, DragEventArgs e)
@@ -74,28 +65,12 @@ namespace WindowsFormsApp2
                 e.Effect = DragDropEffects.None;
         }
 
-        private void MouseUp(object sender, MouseEventArgs e)
-        {
-            Label label = (Label)sender;
-            Circle circle = null;
-
-            foreach (var item in _labelsCircles)
-            {
-                if (item.Key == label)
-                {
-                    circle = item.Value;
-                }
-            }
-            Console.WriteLine($"Положили:");
-            Console.WriteLine($"Index: {circle.GetIndex()}");
-            Console.WriteLine($"level: {circle.GetLevel()}");
-            Console.WriteLine($"color: {circle.GetColor()}");
-        }
-
         private void DragDrop(object sender, DragEventArgs e)
         {
             Label label = (Label)sender;
-            label.Text = e.Data.GetData(DataFormats.Text).ToString();
+            Console.WriteLine("Data: " + e.Data.GetData(DataFormats.Text).ToString());
+
+            // надо как-то сюда передать того, кого берем.
             TryMerge(e.Data.GetData(DataFormats.Text).ToString(), label);
         }
 
@@ -115,18 +90,73 @@ namespace WindowsFormsApp2
                 if (item.Key == label)
                 {
                     item.Value.SetEmptyCircle();
+
+                    foreach (var circle in _cellsHolder.GetCircles())
+                    {
+                        if (circle == item.Value)
+                        {
+                            item.Value.SetNewParameters("transparent", 0);
+                        }
+                    }
                 }
             }
         }
 
-        private void TryMerge(string data, Label label)
+        private void TryMerge(string data, Label taker)
         {
+            string newData = data;
+            int level = int.Parse(newData[0].ToString());
+            string color = "";
+
+            for (int i = 1; i < newData.Length; i++)
+            {
+                color += newData[i];
+            }
+
             foreach (var item in _labelsCircles)
             {
-                if (item.Key == label)
+                if (item.Key == taker && ValidateMerge(taker))
                 {
-                    // test
-                    item.Value.SetNewParameters("blue", 1);
+                    if (item.Value.GetColor() == color && item.Value.GetLevel() == level)
+                    {
+                        level++;
+                        item.Value.SetNewParameters(color, level);
+                        taker.Text = level.ToString();
+                        item.Value.GetLabel().Text = level.ToString();
+                        RefreshCellsHolder(item.Value, color, level);
+                    }
+                    else if (item.Value.GetColor() == "transparent" && item.Value.GetLevel() == 0)
+                    {
+                        item.Value.SetNewParameters(color, level);
+                        taker.Text = level.ToString();
+                        item.Value.GetLabel().Text = level.ToString();
+                        RefreshCellsHolder(item.Value, color, level);
+                    }
+                }
+            }
+        }
+
+
+        ////////////////////////////////////////
+        private bool ValidateMerge(Label label)
+        {
+            //foreach (var item in _labelsCircles)
+            //{
+            //    if (item.Value.GetLabel() == label)
+            //    {
+            //        return false;
+            //    }
+            //}
+            return true;
+        }
+
+        private void RefreshCellsHolder(Circle circle, string color, int level)
+        {
+            foreach (var item in _cellsHolder.GetCircles())
+            {
+                if (circle == item)
+                {
+                    item.SetNewParameters(color, level);
                 }
             }
         }
