@@ -36,20 +36,6 @@ namespace WindowsFormsApp2
             }
         }
 
-        //public List<Circle> GetCircles()
-        //{
-        //    List<Circle> list = new List<Circle>();
-        //    list = _circles;
-        //    return list;
-        //}
-
-        //public List<Circle> GetEmptyCircles()
-        //{
-        //    List<Circle> list = new List<Circle>();
-        //    list = _emptyCircles;
-        //    return list;
-        //}
-
         private int GetFreeCell(CellsHolder cellsHolder)
         {
             int cellIndex = _random.Next(0, cellsHolder.GetFreeCells().Count);

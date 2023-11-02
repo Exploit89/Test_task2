@@ -63,12 +63,16 @@ namespace WindowsFormsApp2
                 int level = circle.GetLevel();
 
                 if (questColor == color && questLevel == level)
-                {
                     circles.Add(circle);
-                }
             }
-            int index = random.Next(0, circles.Count);
-            _circles[index].SetEmptyCircle();
+            int randomNumber = random.Next(0, circles.Count);
+            int index = circles[randomNumber].GetIndex();
+
+            foreach (var item in _circles)
+            {
+                if (item.GetIndex() == index)
+                    item.SetEmptyCircle();
+            }
             circles.Clear();
         }
 

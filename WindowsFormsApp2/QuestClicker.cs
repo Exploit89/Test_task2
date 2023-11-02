@@ -12,6 +12,7 @@ namespace WindowsFormsApp2
         private CellsHolder _cellsHolder;
 
         public event Action<Circle> QuestCompleted;
+        public event Action AddCompletedQuest;
 
         public QuestClicker(QuestCreator questCreator, CellsHolder cellsHolder)
         {
@@ -61,7 +62,6 @@ namespace WindowsFormsApp2
             if (circle != null)
             {
                 ValidateCircle(circle);
-                // надо как-то удалить эл-т коллекции cellsHolder + очки после удаления продолжают прибавляться
             }
         }
 
@@ -77,6 +77,7 @@ namespace WindowsFormsApp2
                 if (questColor == color && questLevel == level)
                 {
                     QuestCompleted?.Invoke(circle);
+                    AddCompletedQuest?.Invoke();
                     _questCreator.RefreshQuest(circle);
                     _cellsHolder.RemoveCircle(item);
                     return true;

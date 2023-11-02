@@ -33,6 +33,11 @@ namespace WindowsFormsApp2
             return _label;
         }
 
+        public int GetTotalPoints()
+        {
+            return _points;
+        }
+
         private void CreateLabel()
         {
             _label = new Label();

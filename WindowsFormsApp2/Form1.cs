@@ -15,12 +15,16 @@ namespace WindowsFormsApp2
         private Bitmap _tableBitmap = MyResources.Table;
         private Points _points;
         private CircleMover _circleMover;
+        private CircleGenerator _circleGenerator;
+        private int _completedQuestCount = 0;
+        private int _maxQuestCount = 10;
 
         public Form1()
         {
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             UpdateStyles();
             InitializeComponent();
+            totalPoints.Hide();
             StartGame();
         }
 
@@ -35,6 +39,7 @@ namespace WindowsFormsApp2
 
         private void StartGame()
         {
+            _completedQuestCount = 0;
             _table = new Table();
             _circlesCreator = new CirclesCreator();
             _cellsHolder = new CellsHolder(_table);
@@ -44,6 +49,17 @@ namespace WindowsFormsApp2
             _tableClicker = new TableClicker(_cellsHolder);
             _points = new Points(_questClicker);
             _circleMover = new CircleMover(_cellsHolder);
+            _circleGenerator = new CircleGenerator(_cellsHolder);
+            _questClicker.AddCompletedQuest += AddCompletedQuest();
+        }
+
+        private Action AddCompletedQuest()
+        {
+            _completedQuestCount++;
+            Console.WriteLine("completed quests =" + _completedQuestCount);
+            if (_completedQuestCount == _maxQuestCount)
+                EndGame();
+            return () => { };
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -64,6 +80,22 @@ namespace WindowsFormsApp2
                 graphics.DrawImage(item.GetImage(), new Rectangle(item.GetPosition()[0], item.GetPosition()[1], 44, 44));
                 item.GetLabel().Parent = this;
             }
+        }
+
+        private void StartButtonClick(object sender, EventArgs e)
+        {
+            if (_completedQuestCount == 10)
+                StartGame();
+            menuPanel.Hide();
+            totalPoints.Hide();
+        }
+
+        private void EndGame()
+        {
+            menuPanel.Show();
+            totalPoints.Text = _points.GetTotalPoints().ToString();
+            totalPoints.Show();
+            _completedQuestCount = 0;
         }
     }
 }

@@ -132,5 +132,13 @@ namespace WindowsFormsApp2
             // для проверки
             //_label.Text = _index.ToString();
         }
+
+        public void TrySetGeneration(int level)
+        {
+            if (level == 4)
+            {
+                _generation = true;
+            }
+        }
     }
 }
