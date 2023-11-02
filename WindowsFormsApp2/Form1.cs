@@ -14,6 +14,7 @@ namespace WindowsFormsApp2
         private TableClicker _tableClicker;
         private Bitmap _tableBitmap = MyResources.Table;
         private Points _points;
+        private CircleMover _circleMover;
 
         public Form1()
         {
@@ -42,6 +43,7 @@ namespace WindowsFormsApp2
             _circlesCreator.CreateStartCircles(_cellsHolder);
             _tableClicker = new TableClicker(_cellsHolder);
             _points = new Points(_questClicker);
+            _circleMover = new CircleMover(_cellsHolder);
         }
 
         private void timer1_Tick(object sender, EventArgs e)

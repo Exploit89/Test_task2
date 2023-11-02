@@ -23,6 +23,7 @@ namespace WindowsFormsApp2
                 cellsHolder.RemoveFreeCell(cellKey);
                 circle.Move(cellCoordinates[0], cellCoordinates[1]);
                 circle.SetIndex(cellKey, cellCoordinates);
+                circle.GetLabel().AllowDrop = true;
                 _circles.Add(circle);
                 cellsHolder.AddCircle(circle);
             }
@@ -69,6 +70,7 @@ namespace WindowsFormsApp2
                 cellsHolder.RemoveFreeCell(cellKey);
                 circle.Move(cellCoordinates[0], cellCoordinates[1]);
                 circle.SetIndex(cellKey, cellCoordinates);
+                circle.GetLabel().AllowDrop = true;
                 _emptyCircles.Add(circle);
                 cellsHolder.AddCircle(circle);
                 circle.SetEmptyCircle();

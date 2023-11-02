@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp2
@@ -100,6 +101,9 @@ namespace WindowsFormsApp2
         public void SetEmptyCircle()
         {
             _label.Text = string.Empty;
+            _image = MyResources.TransparentCircle;
+            _color = "transparent";
+            _level = 0;
         }
 
         public void SetNewParameters(string color, int level)

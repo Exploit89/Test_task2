@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace WindowsFormsApp2
@@ -51,12 +52,24 @@ namespace WindowsFormsApp2
 
         public void RemoveCircle(Circle circle)
         {
+            List<Circle> circles = new List<Circle>();
+            Random random = new Random();
+
             foreach (var item in _circles)
             {
-                if (item == circle)
-                    item.SetEmptyCircle();
+                string questColor = item.GetColor();
+                int questLevel = item.GetLevel();
+                string color = circle.GetColor();
+                int level = circle.GetLevel();
+
+                if (questColor == color && questLevel == level)
+                {
+                    circles.Add(circle);
+                }
             }
-            _circles.Remove(circle);
+            int index = random.Next(0, circles.Count);
+            _circles[index].SetEmptyCircle();
+            circles.Clear();
         }
 
         private void FillFreeCells()

@@ -27,6 +27,24 @@ namespace WindowsFormsApp2
             CreateLabel();
         }
 
+        //public void CreateQuest()
+        //{
+        //    _random = new Random();
+        //    int index = 0;
+
+        //    for (int i = 0; i < _questCount; i++)
+        //    {
+        //        var colorIndex = _random.Next(0,3);
+        //        var circleLevel = _random.Next(1,5);
+        //        var color = typeof(Colors).GetEnumName(colorIndex);
+        //        var circle = new Circle(color, circleLevel, false);
+        //        circle.Move(_circleCoordinates[index][0], _circleCoordinates[index][1]);
+        //        circle.SetIndex(index, _circleCoordinates[index]);
+        //        index++;
+        //        _circles.Add(circle);
+        //    }
+        //}
+
         public void CreateQuest()
         {
             _random = new Random();
@@ -34,8 +52,8 @@ namespace WindowsFormsApp2
 
             for (int i = 0; i < _questCount; i++)
             {
-                var colorIndex = _random.Next(0,3);
-                var circleLevel = _random.Next(1,5);
+                var colorIndex = 0;
+                var circleLevel = 1;
                 var color = typeof(Colors).GetEnumName(colorIndex);
                 var circle = new Circle(color, circleLevel, false);
                 circle.Move(_circleCoordinates[index][0], _circleCoordinates[index][1]);
@@ -55,7 +73,6 @@ namespace WindowsFormsApp2
         public void RefreshQuest(Circle circle)
         {
             circle.SetEmptyCircle();
-            //_circles.Remove(circle);
             AddNewQuest(circle);
         }
 
