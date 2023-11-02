@@ -142,12 +142,17 @@ namespace WindowsFormsApp2
         {
             if (_directionX <= _takerX && _directionY <= _takerY)
             {
-                _directionX += _takerX / 20;
-                _directionY += _takerY / 20;
+                _directionX += (_takerX - _currentX) / 5;
+                _directionY += (_takerY - _currentY) / 5;
             }
             else
             {
+                _directionX = _takerX;
+                _directionY = _takerY;
                 _currentCircle = null;
+                _takerX = 0;
+                _takerY = 0;
+                _circleMover = null;
             }
         }
     }
